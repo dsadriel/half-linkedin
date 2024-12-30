@@ -1,5 +1,10 @@
 -- Criação das tabelas do banco de dados
 
+-- ENTIDADE AUXILIAR --
+CREATE TABLE TIPO_MODALIDADE (
+    modalidade VARCHAR(100) PRIMARY KEY
+);
+
 -- ENTIDADES PRINCIPAIS --
 CREATE TABLE PERFIL (
     id_perfil VARCHAR(50) PRIMARY KEY,
@@ -17,7 +22,7 @@ CREATE TABLE PERFIL_COMPANHIA (
 );
 
 CREATE TABLE PERFIL_PESSOAL (
-    id_perfil VARCHAR(50) NOT NULL,
+    id_perfil VARCHAR(50) PRIMARY KEY,
     descricao_curta VARCHAR(100),
     FOREIGN KEY (id_perfil) REFERENCES PERFIL(id_perfil)
 );
@@ -46,7 +51,7 @@ CREATE TABLE COMENTARIO (
 
 CREATE TABLE VAGA (
     id_vaga INT PRIMARY KEY,
-    id_perfil INT NOT NULL,
+    id_perfil VARCHAR(50) NOT NULL,
     data_publicacao DATE NOT NULL,
     nome VARCHAR(255) NOT NULL,
     descricao VARCHAR(3000),
@@ -63,7 +68,7 @@ CREATE TABLE EVENTO (
     foto_capa VARCHAR(255) CHECK (foto_capa LIKE 'https://%.jpg'),
     descricao VARCHAR(3000),
     localizacao VARCHAR(255),
-    id_perfil INT NOT NULL,
+    id_perfil VARCHAR(50) NOT NULL,
     modalidade VARCHAR(100),
     FOREIGN KEY (modalidade) REFERENCES TIPO_MODALIDADE(modalidade),
     FOREIGN KEY (id_perfil) REFERENCES PERFIL_COMPANHIA(id_perfil)
@@ -75,10 +80,6 @@ CREATE TABLE LISTA_IDIOMA (
     nome VARCHAR(50),
     proficiencia VARCHAR(50),
     PRIMARY KEY (nome, proficiencia)
-);
-
-CREATE TABLE TIPO_MODALIDADE (
-    modalidade VARCHAR(100) PRIMARY KEY
 );
 
 CREATE TABLE LISTA_SETOR (
