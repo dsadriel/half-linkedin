@@ -1,0 +1,14 @@
+services:
+  db: 
+    image: postgres:12
+    restart: always
+    volumes:
+      - ./etapa-ii/tabelas.sql:/docker-entrypoint-initdb.d/tabelas.sql
+      - ./etapa-ii/instancias.sql:/docker-entrypoint-initdb.d/instancias.sql
+    tmpfs:
+      - /var/lib/postgresql/data # Define os dados como temporários
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: halflinkedin
+    ports:
+      - "5432:5432"
