@@ -18,13 +18,13 @@ CREATE TABLE PERFIL (
 
 CREATE TABLE PERFIL_COMPANHIA (
     id_perfil VARCHAR(50) PRIMARY KEY,
-    FOREIGN KEY (id_perfil) REFERENCES PERFIL(id_perfil)
+    FOREIGN KEY (id_perfil) REFERENCES PERFIL(id_perfil) ON UPDATE CASCADE
 );
 
 CREATE TABLE PERFIL_PESSOAL (
     id_perfil VARCHAR(50) PRIMARY KEY,
     descricao_curta VARCHAR(100),
-    FOREIGN KEY (id_perfil) REFERENCES PERFIL(id_perfil)
+    FOREIGN KEY (id_perfil) REFERENCES PERFIL(id_perfil) ON UPDATE CASCADE
 );
 
 CREATE TABLE PUBLICACAO (
@@ -32,7 +32,7 @@ CREATE TABLE PUBLICACAO (
     id_perfil VARCHAR(50) NOT NULL,
     data_publicacao DATE NOT NULL,
     texto VARCHAR(3000) NOT NULL,
-    FOREIGN KEY (id_perfil) REFERENCES PERFIL(id_perfil)
+    FOREIGN KEY (id_perfil) REFERENCES PERFIL(id_perfil) ON UPDATE CASCADE
 );
 
 CREATE TABLE PUBLICACAO_FEED (
@@ -45,8 +45,12 @@ CREATE TABLE COMENTARIO (
     id_perfil VARCHAR(50) NOT NULL,
     id_publicacao INT NOT NULL,
     texto VARCHAR(1000) NOT NULL,
-    FOREIGN KEY (id_perfil) REFERENCES PERFIL(id_perfil),
+    FOREIGN KEY (id_perfil) REFERENCES PERFIL(id_perfil) ON UPDATE CASCADE,
     FOREIGN KEY (id_publicacao) REFERENCES PUBLICACAO(id_publicacao)
+);
+
+CREATE TABLE TIPO_MODALIDADE (
+    modalidade VARCHAR(100) PRIMARY KEY
 );
 
 CREATE TABLE VAGA (
@@ -58,7 +62,7 @@ CREATE TABLE VAGA (
     localizacao VARCHAR(255),
     modalidade VARCHAR(100),
     FOREIGN KEY (modalidade) REFERENCES TIPO_MODALIDADE(modalidade),
-    FOREIGN KEY (id_perfil) REFERENCES PERFIL_COMPANHIA(id_perfil)
+    FOREIGN KEY (id_perfil) REFERENCES PERFIL_COMPANHIA(id_perfil) ON UPDATE CASCADE
 );
 
 CREATE TABLE EVENTO (
@@ -71,7 +75,7 @@ CREATE TABLE EVENTO (
     id_perfil VARCHAR(50) NOT NULL,
     modalidade VARCHAR(100),
     FOREIGN KEY (modalidade) REFERENCES TIPO_MODALIDADE(modalidade),
-    FOREIGN KEY (id_perfil) REFERENCES PERFIL_COMPANHIA(id_perfil)
+    FOREIGN KEY (id_perfil) REFERENCES PERFIL_COMPANHIA(id_perfil) ON UPDATE CASCADE
 );
 
 -- ENTIDADES AUXILIARES --
@@ -122,7 +126,7 @@ CREATE TABLE INSCRICAO_EVENTO (
     id_perfil VARCHAR(50),
     id_evento VARCHAR(50),
     PRIMARY KEY (id_perfil, id_evento),
-    FOREIGN KEY (id_perfil) REFERENCES PERFIL_PESSOAL(id_perfil),
+    FOREIGN KEY (id_perfil) REFERENCES PERFIL_PESSOAL(id_perfil) ON UPDATE CASCADE,
     FOREIGN KEY (id_evento) REFERENCES EVENTO(id_evento)
 );
 
@@ -131,7 +135,7 @@ CREATE TABLE CURTIDA (
     id_publicacao INT,
     data_curtida DATE NOT NULL,
     PRIMARY KEY (id_perfil, id_publicacao),
-    FOREIGN KEY (id_perfil) REFERENCES PERFIL(id_perfil),
+    FOREIGN KEY (id_perfil) REFERENCES PERFIL(id_perfil) ON UPDATE CASCADE,
     FOREIGN KEY (id_publicacao) REFERENCES PUBLICACAO(id_publicacao)
 );
 
@@ -141,7 +145,7 @@ CREATE TABLE APLICACAO_VAGA (
     estado VARCHAR(30) NOT NULL,
     data_inscricao DATE NOT NULL,
     PRIMARY KEY (id_perfil, id_vaga),
-    FOREIGN KEY (id_perfil) REFERENCES PERFIL_PESSOAL(id_perfil),
+    FOREIGN KEY (id_perfil) REFERENCES PERFIL_PESSOAL(id_perfil) ON UPDATE CASCADE,
     FOREIGN KEY (id_vaga) REFERENCES VAGA(id_vaga)
 );
 
@@ -153,8 +157,8 @@ CREATE TABLE EXPERIENCIA (
     data_fim DATE,
     descricao VARCHAR(3000),
     PRIMARY KEY (id_perfil_pessoal, data_inicio, titulo),
-    FOREIGN KEY (id_perfil_pessoal) REFERENCES PERFIL_PESSOAL(id_perfil),
-    FOREIGN KEY (id_perfil_companhia) REFERENCES PERFIL_COMPANHIA(id_perfil)
+    FOREIGN KEY (id_perfil_pessoal) REFERENCES PERFIL_PESSOAL(id_perfil) ON UPDATE CASCADE,
+    FOREIGN KEY (id_perfil_companhia) REFERENCES PERFIL_COMPANHIA(id_perfil) ON UPDATE CASCADE
 );
 
 CREATE TABLE POSSUI_IDIOMA (
@@ -162,7 +166,7 @@ CREATE TABLE POSSUI_IDIOMA (
     nome VARCHAR(50),
     proficiencia VARCHAR(50) NOT NULL,
     PRIMARY KEY (id_perfil, nome, proficiencia),
-    FOREIGN KEY (id_perfil) REFERENCES PERFIL_PESSOAL(id_perfil),
+    FOREIGN KEY (id_perfil) REFERENCES PERFIL_PESSOAL(id_perfil) ON UPDATE CASCADE, 
     FOREIGN KEY (nome, proficiencia) REFERENCES LISTA_IDIOMA(nome, proficiencia)
 );
 
@@ -171,7 +175,7 @@ CREATE TABLE SEGUIMENTO (
     id_perfil_seguido VARCHAR(50),
     data_seguimento DATE NOT NULL,
     PRIMARY KEY (id_perfil, id_perfil_seguido),
-    FOREIGN KEY (id_perfil) REFERENCES PERFIL(id_perfil),
+    FOREIGN KEY (id_perfil) REFERENCES PERFIL(id_perfil) ON UPDATE CASCADE,
     FOREIGN KEY (id_perfil_seguido) REFERENCES PERFIL(id_perfil)
 );
 
@@ -180,5 +184,5 @@ CREATE TABLE SETOR_COMPANHIA (
     id_perfil VARCHAR(50),
     PRIMARY KEY (id_setor, id_perfil),
     FOREIGN KEY (id_setor) REFERENCES LISTA_SETOR(id_setor),
-    FOREIGN KEY (id_perfil) REFERENCES PERFIL_COMPANHIA(id_perfil)
+    FOREIGN KEY (id_perfil) REFERENCES PERFIL_COMPANHIA(id_perfil) ON UPDATE CASCADE
 );
