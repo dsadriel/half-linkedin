@@ -1,5 +1,10 @@
 -- Criação das tabelas do banco de dados
 
+-- ENTIDADE AUXILIAR --
+CREATE TABLE TIPO_MODALIDADE (
+    modalidade VARCHAR(100) PRIMARY KEY
+);
+
 -- ENTIDADES PRINCIPAIS --
 CREATE TABLE PERFIL (
     id_perfil VARCHAR(50) PRIMARY KEY,
