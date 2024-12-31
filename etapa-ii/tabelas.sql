@@ -42,11 +42,9 @@ CREATE TABLE PUBLICACAO_FEED (
 
 CREATE TABLE COMENTARIO (
     id_comentario INT PRIMARY KEY,
-    id_perfil VARCHAR(50) NOT NULL,
-    id_publicacao INT NOT NULL,
-    texto VARCHAR(1000) NOT NULL,
-    FOREIGN KEY (id_perfil) REFERENCES PERFIL(id_perfil) ON UPDATE CASCADE,
-    FOREIGN KEY (id_publicacao) REFERENCES PUBLICACAO(id_publicacao)
+    comentado_em INT NOT NULL,
+    FOREIGN KEY (comentado_em) REFERENCES PUBLICACAO(id_publicacao),
+    FOREIGN KEY (id_comentario) REFERENCES PUBLICACAO(id_publicacao)
 );
 
 CREATE TABLE VAGA (
@@ -88,7 +86,7 @@ CREATE TABLE LISTA_SETOR (
 );
 
 CREATE TABLE TIPO_EMPREGO (
-    nome VARCHAR(10) PRIMARY KEY CHECK (nome IN ('remoto', 'presencial', 'híbrido'))
+    nome VARCHAR(10) PRIMARY KEY CHECK (nome IN ('Remoto', 'Presencial', 'Híbrido'))
 );
 
 -- ATRIBUTOS MULTI-VALORADOS --
@@ -111,7 +109,7 @@ CREATE TABLE FOTOS_PUBLICACAO (
 CREATE TABLE LINKS (
     id_links INT,
     id_evento VARCHAR(50) NOT NULL,
-    link VARCHAR(255) CHECK (link LIKE 'https://%.com.br'),
+    link VARCHAR(255) CHECK (link LIKE 'https://%'),
     PRIMARY KEY (id_links, id_evento),
     FOREIGN KEY (id_evento) REFERENCES EVENTO(id_evento)
 );
