@@ -4,6 +4,7 @@ services:
     restart: always
     volumes:
       - ./etapa-ii/tabelas.sql:/docker-entrypoint-initdb.d/tabelas.sql
+      - ./etapa-ii/visualizacoes.sql:/docker-entrypoint-initdb.d/visualizacoes.sql
       - ./etapa-ii/instancias.sql:/docker-entrypoint-initdb.d/instancias.sql
     tmpfs:
       - /var/lib/postgresql/data # Define os dados como temporários
