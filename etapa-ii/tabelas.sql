@@ -37,14 +37,14 @@ CREATE TABLE PUBLICACAO (
 
 CREATE TABLE PUBLICACAO_FEED (
     id_publicacao INT PRIMARY KEY,
-    FOREIGN KEY (id_publicacao) REFERENCES PUBLICACAO(id_publicacao)
+    FOREIGN KEY (id_publicacao) REFERENCES PUBLICACAO(id_publicacao) ON DELETE CASCADE
 );
 
 CREATE TABLE COMENTARIO (
     id_comentario INT PRIMARY KEY,
     comentado_em INT NOT NULL,
-    FOREIGN KEY (comentado_em) REFERENCES PUBLICACAO(id_publicacao),
-    FOREIGN KEY (id_comentario) REFERENCES PUBLICACAO(id_publicacao)
+    FOREIGN KEY (comentado_em) REFERENCES PUBLICACAO(id_publicacao) ON DELETE CASCADE,
+    FOREIGN KEY (id_comentario) REFERENCES PUBLICACAO(id_publicacao) ON DELETE CASCADE
 );
 
 CREATE TABLE VAGA (
@@ -96,7 +96,7 @@ CREATE TABLE COMPETENCIA (
     id_vaga INT NOT NULL,
     competencia VARCHAR(100) NOT NULL,
     PRIMARY KEY (id_competencia, id_vaga),
-    FOREIGN KEY (id_vaga) REFERENCES VAGA(id_vaga)
+    FOREIGN KEY (id_vaga) REFERENCES VAGA(id_vaga) ON DELETE CASCADE
 );
 
 CREATE TABLE FOTOS_PUBLICACAO (
