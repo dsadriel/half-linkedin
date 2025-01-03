@@ -3,9 +3,9 @@ services:
     image: postgres:12
     restart: always
     volumes:
-      - ./etapa-ii/tabelas.sql:/docker-entrypoint-initdb.d/tabelas.sql
-      - ./etapa-ii/visualizacoes.sql:/docker-entrypoint-initdb.d/visualizacoes.sql
-      - ./etapa-ii/instancias.sql:/docker-entrypoint-initdb.d/instancias.sql
+      - ./etapa-ii/tabelas.sql:/docker-entrypoint-initdb.d/01-tabelas.sql
+      - ./etapa-ii/instancias.sql:/docker-entrypoint-initdb.d/02-instancias.sql
+      - ./etapa-ii/consultas.sql:/docker-entrypoint-initdb.d/03-consultas.sql
     tmpfs:
       - /var/lib/postgresql/data # Define os dados como temporários
     environment:
