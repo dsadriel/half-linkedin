@@ -1,8 +1,24 @@
 -- Criação das tabelas do banco de dados
 
--- ENTIDADE AUXILIAR --
+-- ENTIDADES AUXILIARES --
+
+CREATE TABLE LISTA_IDIOMA (
+    nome VARCHAR(50),
+    proficiencia VARCHAR(50),
+    PRIMARY KEY (nome, proficiencia)
+);
+
+CREATE TABLE LISTA_SETOR (
+    id_setor INT PRIMARY KEY,
+    nome_setor VARCHAR(100)
+);
+
+CREATE TABLE TIPO_EMPREGO (
+    nome VARCHAR(10) PRIMARY KEY
+);
+
 CREATE TABLE TIPO_MODALIDADE (
-    modalidade VARCHAR(100) PRIMARY KEY
+    modalidade VARCHAR(10) PRIMARY KEY
 );
 
 -- ENTIDADES PRINCIPAIS --
@@ -18,6 +34,7 @@ CREATE TABLE PERFIL (
 
 CREATE TABLE PERFIL_COMPANHIA (
     id_perfil VARCHAR(50) PRIMARY KEY,
+    link VARCHAR(255) CHECK (link LIKE 'https://%'),
     FOREIGN KEY (id_perfil) REFERENCES PERFIL(id_perfil) ON UPDATE CASCADE
 );
 
@@ -49,45 +66,32 @@ CREATE TABLE COMENTARIO (
 
 CREATE TABLE VAGA (
     id_vaga INT PRIMARY KEY,
-    id_perfil VARCHAR(50) NOT NULL,
-    data_publicacao DATE NOT NULL,
     nome VARCHAR(255) NOT NULL,
-    descricao VARCHAR(3000),
+    data_publicacao DATE NOT NULL,
     localizacao VARCHAR(255),
-    modalidade VARCHAR(100),
+    descricao VARCHAR(3000),
+    link VARCHAR(255) CHECK (link LIKE 'https://%'),
+    modalidade VARCHAR(10),
+    tipo_emprego VARCHAR(10),
+    id_perfil VARCHAR(50) NOT NULL,
+    FOREIGN KEY (tipo_emprego) REFERENCES TIPO_EMPREGO(nome),
     FOREIGN KEY (modalidade) REFERENCES TIPO_MODALIDADE(modalidade),
     FOREIGN KEY (id_perfil) REFERENCES PERFIL_COMPANHIA(id_perfil) ON UPDATE CASCADE
 );
 
 CREATE TABLE EVENTO (
     id_evento VARCHAR(50) PRIMARY KEY,
-    nome VARCHAR(255) NOT NULL,
     data_evento DATE NOT NULL,
-    foto_capa VARCHAR(255) CHECK (foto_capa LIKE 'https://%.jpg'),
+    nome VARCHAR(255) NOT NULL,
     descricao VARCHAR(3000),
     localizacao VARCHAR(255),
+    foto_capa VARCHAR(255) CHECK (foto_capa LIKE 'https://%.jpg'),
+    modalidade VARCHAR(10),
     id_perfil VARCHAR(50) NOT NULL,
-    modalidade VARCHAR(100),
     FOREIGN KEY (modalidade) REFERENCES TIPO_MODALIDADE(modalidade),
     FOREIGN KEY (id_perfil) REFERENCES PERFIL_COMPANHIA(id_perfil) ON UPDATE CASCADE
 );
 
--- ENTIDADES AUXILIARES --
-
-CREATE TABLE LISTA_IDIOMA (
-    nome VARCHAR(50),
-    proficiencia VARCHAR(50),
-    PRIMARY KEY (nome, proficiencia)
-);
-
-CREATE TABLE LISTA_SETOR (
-    id_setor INT PRIMARY KEY,
-    nome_setor VARCHAR(100)
-);
-
-CREATE TABLE TIPO_EMPREGO (
-    nome VARCHAR(10) PRIMARY KEY CHECK (nome IN ('Remoto', 'Presencial', 'Híbrido'))
-);
 
 -- ATRIBUTOS MULTI-VALORADOS --
 
@@ -102,12 +106,12 @@ CREATE TABLE COMPETENCIA (
 CREATE TABLE FOTOS_PUBLICACAO (
     id_foto_feed INT PRIMARY KEY,
     id_publicacao INT NOT NULL,
-    foto_publi VARCHAR(255) CHECK (foto_publi LIKE 'https://%.jpg'),
+    link_foto VARCHAR(255) CHECK (link_foto LIKE 'https://%.jpg'),
     FOREIGN KEY (id_publicacao) REFERENCES PUBLICACAO_FEED(id_publicacao)
 );
 
 CREATE TABLE LINKS (
-    id_links INT,
+    id_links INT CHECK (id_links BETWEEN 1 AND 5),
     id_evento VARCHAR(50) NOT NULL,
     link VARCHAR(255) CHECK (link LIKE 'https://%'),
     PRIMARY KEY (id_links, id_evento),

@@ -2,12 +2,14 @@
 -- O conteúdo deste arquivo foi criado com auxilio de ferramentas de inteligência artificial (GPT 4o e 4o-mini)
 
 -- DADOS PARA A TABELA TIPO_MODALIDADE --
-INSERT INTO TIPO_MODALIDADE (modalidade) VALUES ('Remoto'), ('Presencial'), ('Híbrido');
+INSERT INTO TIPO_MODALIDADE (modalidade) VALUES 
+('Remoto'), ('Presencial'), ('Híbrido');
 
 INSERT INTO TIPO_EMPREGO (nome) VALUES
-('Remoto'),
-('Presencial'),
-('Híbrido');
+('Estágio'),
+('CLT'),
+('PJ'),
+('Freelancer');
 
 -- DADOS PARA A TABELA PERFIL (10 PESSOAIS E 5 EMPRESARIAIS) --
 INSERT INTO PERFIL VALUES
@@ -569,5 +571,5 @@ INSERT INTO CURTIDA VALUES
 ('edu_future', 30, '2024-05-07')
 
 
--- TODO: inserir TIPO_EMPREGO, LINKS e FOTOS_PUBLICACO
+-- TODO: inserir LINKS e FOTOS_PUBLICACO
 -- TODO: inserir comentário de comentário
