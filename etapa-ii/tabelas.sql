@@ -107,7 +107,7 @@ CREATE TABLE FOTOS_PUBLICACAO (
     id_foto_feed INT PRIMARY KEY,
     id_publicacao INT NOT NULL,
     link_foto VARCHAR(255) CHECK (link_foto LIKE 'https://%.jpg'),
-    FOREIGN KEY (id_publicacao) REFERENCES PUBLICACAO_FEED(id_publicacao)
+    FOREIGN KEY (id_publicacao) REFERENCES PUBLICACAO_FEED(id_publicacao) ON DELETE CASCADE
 );
 
 CREATE TABLE LINKS (
@@ -134,7 +134,7 @@ CREATE TABLE CURTIDA (
     data_curtida DATE NOT NULL,
     PRIMARY KEY (id_perfil, id_publicacao),
     FOREIGN KEY (id_perfil) REFERENCES PERFIL(id_perfil) ON UPDATE CASCADE,
-    FOREIGN KEY (id_publicacao) REFERENCES PUBLICACAO(id_publicacao)
+    FOREIGN KEY (id_publicacao) REFERENCES PUBLICACAO(id_publicacao) ON DELETE CASCADE
 );
 
 CREATE TABLE APLICACAO_VAGA (
@@ -174,7 +174,7 @@ CREATE TABLE SEGUIMENTO (
     data_seguimento DATE NOT NULL,
     PRIMARY KEY (id_perfil, id_perfil_seguido),
     FOREIGN KEY (id_perfil) REFERENCES PERFIL(id_perfil) ON UPDATE CASCADE,
-    FOREIGN KEY (id_perfil_seguido) REFERENCES PERFIL(id_perfil)
+    FOREIGN KEY (id_perfil_seguido) REFERENCES PERFIL(id_perfil) ON UPDATE CASCADE
 );
 
 CREATE TABLE SETOR_COMPANHIA (
