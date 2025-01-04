@@ -581,3 +581,39 @@ INSERT INTO CURTIDA VALUES
 ('green_solutions', 28, '2024-05-05'),
 ('healthcare_plus', 29, '2024-05-06'),
 ('edu_future', 30, '2024-05-07');
+
+INSERT INTO LINKS VALUES 
+    (1, 'tech_innovators_conference_2025', 'https://techinnovators.com/conference2025'),
+    (2, 'tech_innovators_conference_2025', 'https://techinnovators.com/agenda2025'),
+    (1, 'green_solutions_sustainability_day', 'https://greensolutions.com/sustainabilityday'),
+    (2, 'green_solutions_sustainability_day', 'https://greensolutions.com/workshops'),
+    (1, 'healthcare_plus_wellness_summit', 'https://healthcareplus.com/wellnesssummit'),
+    (2, 'healthcare_plus_wellness_summit', 'https://healthcareplus.com/keynotes'),
+    (1, 'edu_future_online_education_forum', 'https://edufuture.com/onlineforum'),
+    (2, 'edu_future_online_education_forum', 'https://edufuture.com/speakers'),
+    (1, 'build_smart_smart_building_expo', 'https://buildsmart.com/smartbuildingexpo'),
+    (2, 'build_smart_smart_building_expo', 'https://buildsmart.com/innovations');
+
+INSERT INTO FOTOS_PUBLICACAO VALUES 
+    (1, 1, 'https://hlinkedin.com/photos/publicacao1.jpg'),
+    (2, 2, 'https://hlinkedin.com/photos/publicacao2.jpg'),
+    (3, 3, 'https://hlinkedin.com/photos/publicacao3.jpg'),
+    (4, 4, 'https://hlinkedin.com/photos/publicacao4.jpg'),
+    (5, 5, 'https://hlinkedin.com/photos/publicacao5.jpg'),
+    (6, 6, 'https://hlinkedin.com/photos/publicacao6.jpg'),
+    (7, 7, 'https://hlinkedin.com/photos/publicacao7.jpg'),
+    (8, 8, 'https://hlinkedin.com/photos/publicacao8.jpg'),
+    (9, 9, 'https://hlinkedin.com/photos/publicacao9.jpg'),
+    (10, 10, 'https://hlinkedin.com/photos/publicacao10.jpg'),
+    (11, 11, 'https://hlinkedin.com/photos/publicacao11.jpg'),
+    (12, 12, 'https://hlinkedin.com/photos/publicacao12.jpg'),
+    (13, 13, 'https://hlinkedin.com/photos/publicacao13.jpg'),
+    (14, 14, 'https://hlinkedin.com/photos/publicacao14.jpg'),
+    (15, 15, 'https://hlinkedin.com/photos/publicacao15.jpg'),
+    (16, 16, 'https://hlinkedin.com/photos/publicacao16.jpg'),
+    (17, 17, 'https://hlinkedin.com/photos/publicacao17.jpg'),
+    (18, 18, 'https://hlinkedin.com/photos/publicacao18.jpg'),
+    (19, 19, 'https://hlinkedin.com/photos/publicacao19.jpg'),
+    (20, 20, 'https://hlinkedin.com/photos/publicacao20.jpg');
+
+-- TODO: inserir comentário de comentário
