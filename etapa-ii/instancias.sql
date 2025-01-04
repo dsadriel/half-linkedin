@@ -615,5 +615,3 @@ INSERT INTO FOTOS_PUBLICACAO VALUES
     (18, 18, 'https://hlinkedin.com/photos/publicacao18.jpg'),
     (19, 19, 'https://hlinkedin.com/photos/publicacao19.jpg'),
     (20, 20, 'https://hlinkedin.com/photos/publicacao20.jpg');
-
--- TODO: inserir comentário de comentário
