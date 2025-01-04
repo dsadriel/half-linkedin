@@ -72,6 +72,16 @@ LEFT JOIN CURTIDA ON COMENTARIO.id_comentario = CURTIDA.id_publicacao -- para ob
 WHERE COMENTARIO.comentado_em = 1
 GROUP BY PUBLICACAO.id_perfil, PUBLICACAO.data_publicacao, PUBLICACAO.texto;
 
+-- 12. Perfis que não aplicaram a nenhuma das vagas na qual o perfil 'Carla Mendes' aplicou
+SELECT nome
+FROM PERFIL
+WHERE NOT EXISTS (SELECT id_perfil
+		FROM APLICACAO_VAGA
+		WHERE id_perfil = 'carla_mendes' AND
+			id_vaga IN 
+			(SELECT DISTINCT id_vaga
+			FROM APLICACAO_VAGA
+			WHERE id_perfil = PERFIL.id_perfil))
 
 ---- OUTROS
 
