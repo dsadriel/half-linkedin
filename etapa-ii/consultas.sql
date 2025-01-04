@@ -1,8 +1,10 @@
 -- Cria as visualizações (views)
 
+-- Visualização dos perfis de empresa, com todas as informações de perfil e de empresa.
 CREATE VIEW COMPANHIAS
 AS SELECT * FROM PERFIL NATURAL JOIN PERFIL_COMPANHIA;
 
+-- Visualização dos perfis pessoais, com todas as informações de perfil e de pessoa.
 CREATE VIEW PESSOAS
 AS SELECT * FROM PERFIL NATURAL JOIN PERFIL_PESSOAL;
 
