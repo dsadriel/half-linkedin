@@ -20,6 +20,10 @@ WHERE PERFIL.id_perfil = 'john_doe';
 
 -- 2. Todos os eventos em que o perfil pessoal está cadastrado, com nome, data 
 --      e localização.
+SELECT EVENTO.nome, EVENTO.data_evento, EVENTO.localizacao
+FROM EVENTO
+JOIN INSCRICAO_EVENTO ON (EVENTO.id_evento = INSCRICAO_EVENTO.id_evento)
+WHERE INSCRICAO_EVENTO.id_perfil = 'john_doe'
 
 -- 3. Todas as vagas às quais o perfil pessoal se candidatou, incluindo o título da vaga 
 --      e a empresa responsável.
@@ -31,10 +35,16 @@ JOIN VAGA ON (APLICACAO_VAGA.id_vaga = VAGA.id_vaga)
 JOIN PERFIL ON (VAGA.id_perfil = PERFIL.id_perfil)
 WHERE APLICACAO_VAGA.id_perfil = 'john_doe';
 
--- b. Perfil de empresa
-
+-- b. Perfil de empresa - Todas as vagas disponibilizadas por uma determinada empresa, incluindo seu nome, data de publicacao, localizacao e modalidade
+SELECT VAGA.nome NomeVaga, COMPANHIAS.nome NomeEmpresa, VAGA.data_publicacao, VAGA.localizacao, VAGA.modalidade
+FROM COMPANHIAS
+JOIN VAGA on (COMPANHIAS.id_perfil = VAGA.id_perfil)
+WHERE COMPANHIAS.nome = 'Green Solutions'
+	
 -- 4. Todos os funcionários vinculados a uma empresa, com nome e status do vínculo ativo.
 
+ -- nao tenho certeza como fazer esse daqui (acho q n tem um vinculo entre funcionarios e empresas, tu quis dizer experiencias?)
+	
 -- 5. Todos os eventos organizados pela empresa, com a quantidade de inscritos em cada evento.
 SELECT EVENTO.id_evento, COUNT(INSCRICAO_EVENTO.id_perfil) as NUM_INSCRITOS
 FROM EVENTO
@@ -45,6 +55,12 @@ GROUP BY EVENTO.id_evento;
 
 
 -- 6. Os nomes dos inscritos em um evento específico organizado por uma empresa.
+SELECT nome
+FROM PESSOAS pess
+WHERE id_perfil IN (SELECT DISTINCT id_perfil
+		    FROM INSCRICAO_EVENTO
+		    WHERE id_evento = 'green_solutions_sustainability_day')
+
 
 -- 7. As vagas publicadas pela empresas e seus respectivos candaidatos
 SELECT APLICACAO_VAGA.*, VAGA.nome as nome_vaga, PERFIL.nome as nome_candidato
@@ -55,6 +71,8 @@ WHERE VAGA.id_perfil = 'edu_future'
 
 -- 8. Todas as postagens realizadas por um perfil de empresa, com a quantidade de curtidas e comentários recebidos.
 
+
+	
 -- 9. Todos os perfis que o perfil da empresa segue, com informações básicas de cada perfil.
 SELECT *
 FROM SEGUIMENTO
@@ -74,14 +92,14 @@ GROUP BY PUBLICACAO.id_perfil, PUBLICACAO.data_publicacao, PUBLICACAO.texto;
 
 -- 12. Perfis que não aplicaram a nenhuma das vagas na qual o perfil 'Carla Mendes' aplicou
 SELECT nome
-FROM PERFIL
+FROM PESSOAS pess
 WHERE NOT EXISTS (SELECT id_perfil
 		FROM APLICACAO_VAGA
 		WHERE id_perfil = 'carla_mendes' AND
 			id_vaga IN 
 			(SELECT DISTINCT id_vaga
 			FROM APLICACAO_VAGA
-			WHERE id_perfil = PERFIL.id_perfil))
+			WHERE id_perfil = pess.id_perfil))
 
 ---- OUTROS
 
