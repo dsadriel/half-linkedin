@@ -74,8 +74,7 @@ INSERT INTO PUBLICACAO VALUES
 (19, 'sofia_ferreira', '2025-01-19', 'Castração: um ato de amor e responsabilidade. 🐱🐶 Castrar o seu pet é um gesto de cuidado e responsabilidade. Além de evitar o aumento de animais abandonados, a castração traz benefícios para a saúde do seu animalzinho. 💉 Vamos espalhar mais informações sobre a importância desse procedimento e garantir que todos os pets tenham uma vida mais saudável e longeva! 💙 Se você tem dúvidas ou precisa de mais informações, estou aqui para ajudar. Vamos juntos promover o bem-estar dos nossos amigos peludos! 🌟 #SaúdeAnimal #Castração #BemEstarPet'),
 (20, 'ana_clara', '2025-01-20', 'Organizando um workshop de culinária vegana. 🥑🍴 Inscreva-se! Estou super animada para compartilhar com você minhas receitas veganas favoritas em um workshop prático! 🍓🌱 Vamos aprender a fazer pratos deliciosos, saudáveis e cheios de sabor, perfeitos para qualquer ocasião. Se você quer explorar uma alimentação mais consciente e saborosa, junte-se a nós! 💚 Não perca essa oportunidade de aprender e se inspirar! Inscreva-se já e vamos cozinhar juntos! 👩‍🍳 #CulináriaVegana #WorkshopDeCulinária #AlimentaçãoSaudável'),
 
--- comentários
-
+-- Comentários
 (21, 'jane_smith', '2025-01-21', 'Obrigado pelo feedback sobre meu portfólio! Estou pensando em explorar designs minimalistas e futuristas, algo que conecta simplicidade com inovação. Se tiver mais sugestões, ficarei muito grata.'),
 (22, 'lucas_santos', '2025-01-21', 'Ótima reflexão sobre o mercado financeiro, John! Adicionei à minha lista de leituras um livro sobre psicologia financeira. Se você tiver recomendações, me avise.'),
 (23, 'mariana_oliveira', '2025-01-22', 'Interessante sua perspectiva, Carla! O impacto ambiental pode ser reduzido com pequenas mudanças no nosso cotidiano. Estou pensando em fazer um post sobre isso em breve.'),
@@ -85,7 +84,14 @@ INSERT INTO PUBLICACAO VALUES
 (27, 'ana_clara', '2025-01-24', 'Estou muito empolgada com o workshop de culinária vegana! Vou abordar a importância de refeições balanceadas e como adaptar receitas tradicionais para essa dieta.'),
 (28, 'gustavo_pereira', '2025-01-24', 'Tecnologia sustentável é o futuro, Build Smart! Tenho ideias de como integrar sistemas de energia renovável a projetos arquitetônicos.'),
 (29, 'tech_innovators', '2025-01-25', 'Green Solutions, adoramos seu post! Há tanto que podemos fazer em parceria para promover inovações ecológicas e tecnológicas. Vamos conversar sobre isso.'),
-(30, 'edu_future', '2025-01-25', 'Mariana, seria incrível desenvolvermos um módulo de psicologia positiva na nossa plataforma de ensino online. Você tem interesse em colaborar?');
+
+-- Comentários respondendo aos comentários
+(30, 'edu_future', '2025-01-25', 'Mariana, seria incrível desenvolvermos um módulo de psicologia positiva na nossa plataforma de ensino online. Você tem interesse em colaborar?'),
+(31, 'lucas_santos', '2025-01-22', 'Jane, minimalismo é uma ótima abordagem! Talvez você possa explorar o uso de cores neutras e formas geométricas.'),
+(32, 'john_doe', '2025-01-22', 'Lucas, recomendo "O Investidor Inteligente" de Benjamin Graham. É um clássico!'),
+(33, 'carla_mendes', '2025-01-23', 'Mariana, seria ótimo ver mais posts sobre como pequenas mudanças podem fazer uma grande diferença.'),
+(34, 'sofia_ferreira', '2025-01-23', 'Carla, obrigada! A conscientização é fundamental para o bem-estar dos nossos pets.'),
+(35, 'pedro_almeida', '2025-01-24', 'Roberto, ótima ideia! Vou começar a trabalhar em alguns vídeos curtos sobre conceitos matemáticos.');
 
 
 -- INSERINDO DADOS NA TABELA PUBLICACAO_FEED --
@@ -103,7 +109,12 @@ INSERT INTO COMENTARIO VALUES
 (27, 9),
 (28, 15),
 (29, 12),
-(30, 4);
+(30, 4),
+(31, 21),
+(32, 22),
+(33, 23),
+(34, 24),
+(35, 25);
 
 -- Inserindo eventos relacionados às empresas
 INSERT INTO EVENTO (id_evento, nome, data_evento, foto_capa, descricao, localizacao, id_perfil, modalidade) 
@@ -346,6 +357,7 @@ INSERT INTO LISTA_IDIOMA (nome, proficiencia) VALUES
 ('Português', 'Intermediário'),
 ('Português', 'Avançado'),
 ('Português', 'Fluente');
+
 -- Inserir perfis com seus respectivos idiomas e proficiências
 INSERT INTO POSSUI_IDIOMA (id_perfil, nome, proficiencia) VALUES
 ('john_doe', 'Inglês', 'Fluente'),
@@ -568,8 +580,4 @@ INSERT INTO CURTIDA VALUES
 ('tech_innovators', 28, '2024-05-04'),
 ('green_solutions', 28, '2024-05-05'),
 ('healthcare_plus', 29, '2024-05-06'),
-('edu_future', 30, '2024-05-07')
-
-
--- TODO: inserir LINKS e FOTOS_PUBLICACO
--- TODO: inserir comentário de comentário
+('edu_future', 30, '2024-05-07');

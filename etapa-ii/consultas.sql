@@ -109,14 +109,14 @@ GROUP BY PUBLICACAO.id_perfil, PUBLICACAO.data_publicacao, PUBLICACAO.texto;
 
 -- 13. Perfis que não aplicaram a nenhuma vaga que outro perfil aplicou
 SELECT PESSOAS.id_perfil, PESSOAS.nome
-FROM PESSOAS pess
+FROM PESSOAS
 WHERE NOT EXISTS (SELECT id_perfil
 		FROM APLICACAO_VAGA
 		WHERE id_perfil = 'carla_mendes' AND
 			id_vaga IN 
 			(SELECT DISTINCT id_vaga
 			FROM APLICACAO_VAGA
-			WHERE id_perfil = pess.id_perfil));
+			WHERE id_perfil = PESSOAS.id_perfil));
 
 -- 14. Vagas com poucas candidaturas (< 4), com id, nome e número de candidaturas.
 SELECT VAGA.id_vaga, VAGA.nome, COUNT(*) AS NUM_CANDIDATURAS
