@@ -80,6 +80,10 @@ NATURAL JOIN PERFIL
 WHERE id_perfil_seguido = 'edu_future';
 
 -- 10. Todos os seguidores de um perfil de empresa, com nome e e-mail dos seguidores.
+SELECT PERFIL.id_perfil, PERFIL.nome, PERFIL.email
+FROM SEGUIMENTO
+JOIN PERFIL ON (SEGUIMENTO.id_perfil = PERFIL.id_perfil)
+WHERE SEGUIMENTO.id_perfil_seguido = 'build_smart';
 
 -- 11. Os comentários feitos em uma publicação específica da empresa, com a quantidade 
 --		de curtidas recebidas por cada comentário.
