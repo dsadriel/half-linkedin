@@ -75,7 +75,7 @@ INSERT INTO PUBLICACAO VALUES
 (20, 'ana_clara', '2025-01-20', 'Organizando um workshop de culinária vegana. 🥑🍴 Inscreva-se! Estou super animada para compartilhar com você minhas receitas veganas favoritas em um workshop prático! 🍓🌱 Vamos aprender a fazer pratos deliciosos, saudáveis e cheios de sabor, perfeitos para qualquer ocasião. Se você quer explorar uma alimentação mais consciente e saborosa, junte-se a nós! 💚 Não perca essa oportunidade de aprender e se inspirar! Inscreva-se já e vamos cozinhar juntos! 👩‍🍳 #CulináriaVegana #WorkshopDeCulinária #AlimentaçãoSaudável'),
 
 -- Comentários
-(21, 'jane_smith', '2025-01-21', 'Obrigado pelo feedback sobre meu portfólio! Estou pensando em explorar designs minimalistas e futuristas, algo que conecta simplicidade com inovação. Se tiver mais sugestões, ficarei muito grata.'),
+(21, 'jane_smith', '2025-01-21', 'Obrigada pela mensagem inspiradora, John! Que 2025 seja incrível para todos nós. 🙏'),
 (22, 'lucas_santos', '2025-01-21', 'Ótima reflexão sobre o mercado financeiro, John! Adicionei à minha lista de leituras um livro sobre psicologia financeira. Se você tiver recomendações, me avise.'),
 (23, 'mariana_oliveira', '2025-01-22', 'Interessante sua perspectiva, Carla! O impacto ambiental pode ser reduzido com pequenas mudanças no nosso cotidiano. Estou pensando em fazer um post sobre isso em breve.'),
 (24, 'carla_mendes', '2025-01-22', 'Sofia, adorei sua publicação! É tão importante conscientizar as pessoas sobre a castração. Vou compartilhar com amigos que têm pets.'),
@@ -87,7 +87,7 @@ INSERT INTO PUBLICACAO VALUES
 
 -- Comentários respondendo aos comentários
 (30, 'edu_future', '2025-01-25', 'Mariana, seria incrível desenvolvermos um módulo de psicologia positiva na nossa plataforma de ensino online. Você tem interesse em colaborar?'),
-(31, 'lucas_santos', '2025-01-22', 'Jane, minimalismo é uma ótima abordagem! Talvez você possa explorar o uso de cores neutras e formas geométricas.'),
+(31, 'lucas_santos', '2025-01-22', 'Concordo, Jane! Vamos fazer deste ano o melhor de todos. 🚀'),
 (32, 'john_doe', '2025-01-22', 'Lucas, recomendo "O Investidor Inteligente" de Benjamin Graham. É um clássico!'),
 (33, 'carla_mendes', '2025-01-23', 'Mariana, seria ótimo ver mais posts sobre como pequenas mudanças podem fazer uma grande diferença.'),
 (34, 'sofia_ferreira', '2025-01-23', 'Carla, obrigada! A conscientização é fundamental para o bem-estar dos nossos pets.'),
