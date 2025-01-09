@@ -1,29 +1,32 @@
 import psycopg2
+from functions import *
 
-def obterComentarios(id, depth = 2):
-    if(depth < 1):
-        return None
+colorama_init()
 
-    sql = f"""
-    SELECT PUBLICACAO.id_perfil, data_publicacao, texto, COUNT(CURTIDA.data_curtida) AS curtidas
-    FROM COMENTARIO
-    JOIN PUBLICACAO ON COMENTARIO.id_comentario = PUBLICACAO.id_publicacao -- para obter o conteúdo
-    LEFT JOIN CURTIDA ON COMENTARIO.id_comentario = CURTIDA.id_publicacao -- para obter as curtidas
-    WHERE COMENTARIO.comentado_em = {id}
-    GROUP BY PUBLICACAO.id_perfil, PUBLICACAO.data_publicacao, PUBLICACAO.texto;"""
+if __name__ == '__main__':
     
-    comentarios = []
+    # conecta ao banco de dados halflinkedin
+    conn = psycopg2.connect(
+        host='localhost',
+        database='halflinkedin',
+        user='postgres',
+        password='postgres')
     
-    for c in comentarios:
-        c.respostas = obterComentarios(c.id, depth-1)
-        
-    return comentarios
- 
-
-
-def imprmirPublicacao(id):
-   
-   comentarios = obterComentarios(id);
-   
-   for c in comentarios:
-      print(f'{c.id_perfil}: ')
+    # cria um cursor para manipular o banco de dados
+    cursor = conn.cursor()
+    
+    imprimir_feed_inicial(cursor, 999)
+    
+    print('-'*80)
+    
+    # Imprime os dados de um perfil
+    print('Insira o id do perfil para ver seus dados:')
+    #id_perfil = input()
+    imprimir_perfil(cursor, 'john_doe')
+    
+    cursor.close()
+    conn.close()
+    print('Conexão com o banco de dados encerrada')
+     
+     
+     
