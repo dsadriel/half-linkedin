@@ -15,7 +15,7 @@ def imprimir_comentarios_de(cursor: 'psycopg2.cursor', id_publicacao: int, offse
     # Imprime os comentários
     for registro_comentario in registros:
         _, id_perfil, data_publicacao, texto, curtidas = registro_comentario
-        print(f'{'\t'*offset}> {Fore.GREEN}{id_perfil}{Style.RESET_ALL} em {Fore.BLUE}{data_publicacao}{Style.RESET_ALL}: {Fore.LIGHTBLACK_EX}{texto} {Style.RESET_ALL}({curtidas} curtidas)')  
+        print(f'{'\t'*offset}> {Fore.CYAN}{id_perfil}{Style.RESET_ALL} em {Fore.BLUE}{data_publicacao}{Style.RESET_ALL}: {Fore.LIGHTBLACK_EX}{texto} {Style.RESET_ALL}({curtidas} curtidas)')  
     
     return [registro_comentario[0] for registro_comentario in registros]
 
@@ -45,7 +45,7 @@ def imprimir_feed_inicial(cursor: 'psycopg2.cursor', quantiade: int = 5, aleator
         
         nome_perfil, data, id_publicacao, texto, curtidas, comentarios = registro
         # Imprime a publicação
-        print(f'\n\n{Fore.GREEN}{nome_perfil}{Style.RESET_ALL} em {Fore.BLUE}{data}{Style.RESET_ALL}')
+        print(f'\n\n{Fore.CYAN}{nome_perfil}{Style.RESET_ALL} em {Fore.BLUE}{data}{Style.RESET_ALL}')
         print(f'{texto}')
         print(f'{Fore.YELLOW}{curtidas} curtidas{Style.RESET_ALL} e {Fore.YELLOW}{comentarios} comentários{Style.RESET_ALL}')
         
@@ -66,7 +66,7 @@ def imprimir_perfil(cursor: 'psycopg2.cursor', id_perfil: str) -> None:
     
     id_perfil, nome, descricao_longa, localizacao, descricao_curta = registro
     
-    print(f'{Fore.GREEN}{nome}\n{Fore.YELLOW}{localizacao}\n{Style.RESET_ALL}{descricao_curta}\n\n\t{Fore.LIGHTBLACK_EX}{descricao_longa}\n{Style.RESET_ALL}')
+    print(f'{Fore.CYAN}{nome}\n{Fore.YELLOW}{localizacao}\n{Style.RESET_ALL}{descricao_curta}\n\n\t{Fore.LIGHTBLACK_EX}{descricao_longa}\n{Style.RESET_ALL}')
     
     cursor.execute('''
                    SELECT COMPANHIAS.nome, titulo, data_inicio, data_fim, descricao
@@ -81,7 +81,7 @@ def imprimir_perfil(cursor: 'psycopg2.cursor', id_perfil: str) -> None:
         print(f'{Fore.YELLOW}Experiências{Style.RESET_ALL}')
         for experiencia in experiencias:
             nome_empresa, titulo, data_inicio, data_fim, descricao = experiencia
-            print(f'{Fore.BLUE}{titulo}{Style.RESET_ALL} em {Fore.GREEN}{nome_empresa} {Style.RESET_ALL}({data_inicio} - {data_fim if data_fim is not None else "Atual"})\n\t{Fore.LIGHTBLACK_EX}{descricao}')
+            print(f'{Fore.BLUE}{titulo}{Style.RESET_ALL} em {Fore.CYAN}{nome_empresa} {Style.RESET_ALL}({data_inicio} - {data_fim if data_fim is not None else "Atual"})\n\t{Fore.LIGHTBLACK_EX}{descricao}')
     
     cursor.execute('''
                    SELECT EVENTO.nome, EVENTO.data_evento, EVENTO.localizacao
@@ -94,7 +94,7 @@ def imprimir_perfil(cursor: 'psycopg2.cursor', id_perfil: str) -> None:
         print(f'\n\n{Fore.YELLOW}Eventos inscritos{Style.RESET_ALL}')
         for evento in eventos:
             nome_evento, data_evento, localizacao = evento
-            print(f'{Fore.BLUE}{nome_evento}{Style.RESET_ALL} em {Fore.GREEN}{localizacao}{Style.RESET_ALL} ({data_evento})')
+            print(f'{Fore.BLUE}{nome_evento}{Style.RESET_ALL} em {Fore.CYAN}{localizacao}{Style.RESET_ALL} ({data_evento})')
             
     cursor.execute('''
                    SELECT VAGA.nome, APLICACAO_VAGA.data_inscricao, APLICACAO_VAGA.estado,
@@ -110,6 +110,6 @@ def imprimir_perfil(cursor: 'psycopg2.cursor', id_perfil: str) -> None:
         print(f'\n\n{Fore.YELLOW}Aplicações{Style.RESET_ALL}')
         for aplicacao in aplicacoes:
             nome_vaga, data_inscricao, estado, id_companhia, nome_companhia = aplicacao
-            print(f'{Fore.BLUE}{nome_vaga}{Style.RESET_ALL} em {Fore.GREEN}{nome_companhia}{Style.RESET_ALL} ({estado}) ({data_inscricao})')
+            print(f'{Fore.BLUE}{nome_vaga}{Style.RESET_ALL} em {Fore.CYAN}{nome_companhia}{Style.RESET_ALL} ({estado}) ({data_inscricao})')
             
     # Colocar seguidores e seguidos
