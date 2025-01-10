@@ -1,32 +1,63 @@
 import psycopg2
-from functions import *
+import questionary
 
-colorama_init()
+import consultas as cons
+import inserscoes as ins
 
 if __name__ == '__main__':
-    
-    # conecta ao banco de dados halflinkedin
+    # Conecta ao banco de dados
     conn = psycopg2.connect(
         host='localhost',
         database='halflinkedin',
         user='postgres',
-        password='postgres')
+        password='postgres'
+    )
+    cursor = conn.cursor()  # Cria um cursor para executar comandos SQL
     
-    # cria um cursor para manipular o banco de dados
-    cursor = conn.cursor()
-    
-    imprimir_feed_inicial(cursor, 999)
-    
-    print('-'*80)
-    
-    # Imprime os dados de um perfil
-    print('Insira o id do perfil para ver seus dados:')
-    #id_perfil = input()
-    imprimir_perfil(cursor, 'john_doe')
-    
+    print('Conexão com o banco de dados estabelecida! \n')
+        
+    while True:
+        print('\n' + '-=' * 40 + '\n')
+        # Menu principal
+        opcao = questionary.select(
+            'O que deseja fazer?',
+            choices=[
+                'Listar perfis',
+                'Ver o feed de publicações',
+                'Ver um perfil pessoal',
+                'Ver um perfil de companhia',
+                'Criar um perfil pessoal',
+                'Criar uma publicação no feed',
+                'Excluir uma publicação do feed',
+                'Sair'
+            ]
+        ).ask()
+        
+        if opcao == 'Ver o feed de publicações':
+            cons.ver_feed(cursor)
+        elif opcao == 'Listar perfis':
+            cursor.execute('SELECT id_perfil, nome FROM PERFIL;')
+            for perfil in cursor.fetchall():
+                print(f'{perfil[0]} - {perfil[1]}')
+        elif opcao == 'Ver um perfil pessoal':
+            id_perfil = input('Digite o id do perfil: ')
+            cons.ver_perfil_pessoal(cursor, id_perfil)
+        elif opcao == 'Ver um perfil de companhia':
+            id_perfil = input('Digite o id do perfil: ')
+            cons.ver_perfil_companhia(cursor, id_perfil)
+        elif opcao == 'Criar um perfil pessoal':
+            ins.criar_perfil_pessoal(cursor)
+            conn.commit()  # Salva as alterações
+        elif opcao == 'Criar uma publicação no feed':
+            ins.criar_publicacao_feed(cursor)
+            conn.commit()
+        elif opcao == 'Excluir uma publicação do feed':
+            ins.excluir_publicacao_feed(cursor)
+            conn.commit()
+        elif opcao == 'Sair':
+            print('Até mais!')
+            break
+            
     cursor.close()
-    conn.close()
+    conn.close()  # Encerra a conexão com o banco de dados
     print('Conexão com o banco de dados encerrada')
-     
-     
-     
