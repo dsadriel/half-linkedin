@@ -83,3 +83,23 @@ BEFORE UPDATE
 ON APLICACAO_VAGA
 FOR EACH ROW
 EXECUTE FUNCTION atualizar_aplicacao_vaga();
+
+--- Criação da função que impede que um usuário siga a si mesmo
+CREATE OR REPLACE FUNCTION impedir_autoseguimento()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF NEW.id_seguidor = NEW.id_seguido THEN
+        RAISE EXCEPTION 'Não é possível seguir a si mesmo';
+    END IF;
+
+    RETURN NEW;
+END;
+
+$$ LANGUAGE plpgsql;
+
+-- Inserção do gatilho que impede que um usuário siga a si mesmo
+CREATE TRIGGER impedir_autoseguimento
+BEFORE INSERT
+ON SEGUIMENTO
+FOR EACH ROW
+EXECUTE FUNCTION impedir_autoseguimento();
