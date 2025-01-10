@@ -52,7 +52,7 @@ JOIN EXPERIENCIA ON (EXPERIENCIA.id_perfil_pessoal = PERFIL.id_perfil)
 WHERE id_perfil_companhia = 'edu_future' -- argumento
 		AND data_fim IS NULL;
 
--- 6. Todos os eventos organizados pela empresa, com nome, data e localização,
+-- 6. O identificador e o número de inscritos de todos os eventos de uma empresa.
 SELECT EVENTO.id_evento, COUNT(INSCRICAO_EVENTO.id_perfil) as NUM_INSCRITOS
 FROM EVENTO
 JOIN INSCRICAO_EVENTO ON (EVENTO.id_evento = INSCRICAO_EVENTO.id_evento)
