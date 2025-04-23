@@ -30,7 +30,7 @@ Transformação do modelo conceitual em um esquema relacional adequado a um Sist
 
 Construção de funcionalidades avançadas e integração do banco com um programa funcional.
  
-- **[Gatilhos (Triggers)](/etapa-iii/gatilhos.sql):** Desenvolvimento de gatilhos para automação de processos dentro do banco. Foram criados gatilhos para atualização de visualizações e controle de integridade.
+- **[Gatilhos (Triggers)](/etapa-iii/gatilho.sql):** Desenvolvimento de gatilhos para automação de processos dentro do banco. Foram criados gatilhos para atualização de visualizações e controle de integridade.
 - **[Programa de Acesso](/etapa-iii/programa):** Implementação de um programa que interaja com o banco de dados. Foi utilizado Python e a biblioteca psycopg2 para realizar consultas e atualizações no banco.
 
 ## Como Executar
